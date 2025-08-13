@@ -13,3 +13,8 @@ body {
     background-color: rgb(14, 28, 66);
     color: rgb(194, 194, 194);
 }
+
+.game-container {
+    display: flex;
+    gap: 1rem;
+}

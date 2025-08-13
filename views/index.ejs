@@ -7,6 +7,26 @@
         <title>Inventory Application</title>
     </head>
     <body>
-        <h1>Gaming Store</h1>
+        <h1>Gaming Store Inventory</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Release Year</th>
+                    <th>Developer</th>
+                    <th>Genres</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% games.forEach((game) => { %>
+                <tr>
+                    <td><%= game.title %></td>
+                    <td><%= game.release_year %></td>
+                    <td><%= game.developer %></td>
+                    <td><%= game.genres %></td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
     </body>
 </html>
