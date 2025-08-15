@@ -5,6 +5,24 @@ async function getGames() {
     return rows;
 }
 
+async function getGenres() {
+    const { rows } = await pool.query("SELECT * FROM genres");
+    return rows;
+}
+
+async function getDevelopers() {
+    const { rows } = await pool.query("SELECT * FROM developers");
+    return rows;
+}
+
+async function getGame(gameId) {
+    const { rows } = await pool.query(
+        "SELECT * FROM games WHERE game_id = $1",
+        [gameId]
+    );
+    return rows[0];
+}
+
 async function getCombinedInfo() {
     const { rows } = await pool.query(`
         SELECT
@@ -22,4 +40,36 @@ async function getCombinedInfo() {
     return rows;
 }
 
-module.exports = { getGames, getCombinedInfo };
+async function addGame(title, releaseYear, developerId) {
+    await pool.query(
+        "INSERT INTO games (title, release_year, developer_id) VALUES ($1, $2, $3)",
+        [title, releaseYear, developerId]
+    );
+}
+
+async function addDeveloper(name) {
+    await pool.query("INSERT INTO developers (name) VALUES ($1)", [name]);
+}
+
+async function addGenre(name) {
+    await pool.query("INSERT INTO genres (name) VALUES ($1)", [name]);
+}
+
+async function setGameGenres(gameId, genreId) {
+    await pool.query(
+        "INSERT INTO game_genres (game_id, genre_id) VALUES ($1, $2)",
+        [gameId, genreId]
+    );
+}
+
+module.exports = {
+    getGames,
+    getGenres,
+    getDevelopers,
+    getGame,
+    getCombinedInfo,
+    addGame,
+    addDeveloper,
+    addGenre,
+    setGameGenres,
+};
