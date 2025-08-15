@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Update <%= game.title %></title>
+    </head>
+    <body>
+        <h1>Update <%= game.title %></h1>
+        <form action="/<%= game.game_id %>/update" method="post">
+            <input
+                type="text"
+                name="title"
+                value="<%= game.title %>"
+                placeholder="Game title"
+                required
+            />
+            <input
+                type="number"
+                name="release_year"
+                value="<%= game.release_year %>"
+                placeholder="Release year"
+                required
+            />
+            <label for="developer">Developer:</label>
+                <select name="developer_id" id="developer">
+                    <% developers.forEach(dev => { %>
+                        <option value="<%= dev.developer_id %>" 
+                            <%= dev.developer_id === game.developer_id ? "selected" : "" %>>
+                            <%= dev.name %>
+                        </option>
+                    <% }) %>
+                </select>
+            <label>Genres:</label>
+                <% genres.forEach(genre => { %>
+                    <label>
+                        <input type="checkbox" 
+                            name="genre_id" 
+                            value="<%= genre.genre_id %>" 
+                            <%= game.genre_ids.includes(genre.genre_id) ? "checked" : "" %>>
+                        <%= genre.name %>
+                    </label>
+                <% }) %>
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

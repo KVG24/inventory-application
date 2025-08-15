@@ -24,6 +24,11 @@
                     <td><%= game.release_year %></td>
                     <td><%= game.developer %></td>
                     <td><%= game.genres %></td>
+                    <td>
+                        <a class="update-btn" href="/<%= game.game_id %>/update"
+                            >Update</a
+                        >
+                    </td>
                 </tr>
                 <% }); %>
             </tbody>

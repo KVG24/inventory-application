@@ -17,15 +17,28 @@ async function getDevelopers() {
 
 async function getGame(gameId) {
     const { rows } = await pool.query(
-        "SELECT * FROM games WHERE game_id = $1",
+        `
+        SELECT 
+            g.game_id,
+            g.title,
+            g.release_year,
+            g.developer_id,
+            array_agg(gg.genre_id) AS genre_ids
+        FROM games g
+        LEFT JOIN game_genres gg ON g.game_id = gg.game_id
+        WHERE g.game_id = $1
+        GROUP BY g.game_id
+    `,
         [gameId]
     );
+
     return rows[0];
 }
 
 async function getCombinedInfo() {
     const { rows } = await pool.query(`
         SELECT
+            g.game_id,
             g.title,
             g.release_year,
             d.name AS developer,
