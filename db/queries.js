@@ -53,11 +53,14 @@ async function getCombinedInfo() {
     return rows;
 }
 
-async function addGame(title, releaseYear, developerId) {
-    await pool.query(
-        "INSERT INTO games (title, release_year, developer_id) VALUES ($1, $2, $3)",
-        [title, releaseYear, developerId]
+async function addGame(title, release_year, developer_id) {
+    const result = await pool.query(
+        `INSERT INTO games (title, release_year, developer_id)
+         VALUES ($1, $2, $3)
+         RETURNING game_id`,
+        [title, release_year, developer_id]
     );
+    return result.rows[0].game_id;
 }
 
 async function addDeveloper(name) {
@@ -66,6 +69,17 @@ async function addDeveloper(name) {
 
 async function addGenre(name) {
     await pool.query("INSERT INTO genres (name) VALUES ($1)", [name]);
+}
+
+async function updateGame(title, release_year, developer_id, gameId) {
+    await pool.query(
+        `UPDATE games
+            SET title = $1,
+                release_year = $2,
+                developer_id = $3
+            WHERE game_id = $4`,
+        [title, release_year, developer_id, gameId]
+    );
 }
 
 async function setGameGenres(gameId, genreId) {
@@ -84,5 +98,6 @@ module.exports = {
     addGame,
     addDeveloper,
     addGenre,
+    updateGame,
     setGameGenres,
 };
