@@ -8,7 +8,7 @@
     </head>
     <body>
         <h1>Gaming Store Inventory</h1>
-        <a href="/add">Add game</a>
+        <a class="add-btn" href="/add">Add game</a>
         <table>
             <thead>
                 <tr>
@@ -16,27 +16,27 @@
                     <th>Release Year</th>
                     <th>Developer</th>
                     <th>Genres</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <% games.forEach((game) => { %>
                 <tr>
-                    <td><%= game.title %></td>
-                    <td><%= game.release_year %></td>
-                    <td><%= game.developer %></td>
-                    <td><%= game.genres %></td>
-                    <td>
+                    <td data-label="Title"><%= game.title %></td>
+                    <td data-label="Release Year"><%= game.release_year %></td>
+                    <td data-label="Developer"><%= game.developer %></td>
+                    <td data-label="Genres"><%= game.genres %></td>
+                    <td data-label="Actions">
                         <a class="update-btn" href="/<%= game.game_id %>/update"
                             >Update</a
                         >
-                    </td>
-                    <td>
                         <form
                             action="/<%= game.game_id %>/delete"
                             method="POST"
                             style="display: inline"
                         >
                             <button
+                                class="delete-btn"
                                 type="submit"
                                 onclick="return confirm('Are you sure you want to delete <%= game.title %>');"
                             >

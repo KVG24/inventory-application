@@ -3,12 +3,12 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="/style.css" />
         <title>Update <%= game.title %></title>
     </head>
     <body>
         <h1>Update <%= game.title %></h1>
-        <form action="/<%= game.game_id %>/update" method="post">
+        <form class="form" action="/<%= game.game_id %>/update" method="post">
             <input
                 type="text"
                 name="title"
@@ -24,7 +24,7 @@
                 required
             />
             <label for="developer">Developer:</label>
-                <select name="developer_id" id="developer">
+                <select class="dev-select" name="developer_id" id="developer">
                     <% developers.forEach(dev => { %>
                         <option value="<%= dev.developer_id %>" 
                             <%= dev.developer_id === game.developer_id ? "selected" : "" %>>
@@ -32,17 +32,21 @@
                         </option>
                     <% }) %>
                 </select>
-            <label>Genres:</label>
-                <% genres.forEach(genre => { %>
-                    <label>
-                        <input type="checkbox" 
-                            name="genre_id" 
-                            value="<%= genre.genre_id %>" 
-                            <%= game.genre_ids.includes(genre.genre_id) ? "checked" : "" %>>
-                        <%= genre.name %>
-                    </label>
-                <% }) %>
-            <button type="submit">Submit</button>
+            
+            <label>Genre:</label>
+            <div class="genre-container">
+                    <% genres.forEach(genre => { %>
+                        <label class="genre">
+                            <input type="checkbox"
+                                class="genres-checkbox"
+                                name="genre_id"
+                                value="<%= genre.genre_id %>"
+                                <%= game.genre_ids.includes(genre.genre_id) ? "checked" : "" %>>
+                            <%= genre.name %>
+                        </label>
+                    <% }) %>
+            </div>
+            <button class="submit" type="submit">Submit</button>
         </form>
     </body>
 </html>

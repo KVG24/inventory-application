@@ -34,11 +34,27 @@ const SQL = `
         ('Valve');
     
     INSERT INTO genres (name) VALUES
-        ('RPG'),
-        ('Racing'),
-        ('Shooter'),
-        ('Open World'),
-        ('MMO');
+    ('Action'),
+    ('Adventure'),
+    ('Role-Playing'),
+    ('Shooter'),
+    ('Platformer'),
+    ('Simulation'),
+    ('Sports'),
+    ('Racing'),
+    ('Puzzle'),
+    ('Strategy'),
+    ('Fighting'),
+    ('Horror'),
+    ('Stealth'),
+    ('Survival'),
+    ('Open World'),
+    ('MMORPG'),
+    ('Party'),
+    ('Rhythm'),
+    ('Visual Novel'),
+    ('Sandbox'),
+    ('Tower Defense');
 
     INSERT INTO games (title, release_year, developer_id) VALUES
         ('The Witcher 3: Wild Hunt', 2015, 1),
