@@ -65,10 +65,23 @@ async function updateGame(req, res) {
     }
 }
 
+async function deleteGame(req, res) {
+    const gameId = req.params.id;
+
+    try {
+        await db.deleteGame(gameId);
+        res.redirect("/");
+    } catch (err) {
+        console.error("Error deleting game:", err);
+        res.status(500).send("Error deleting game");
+    }
+}
+
 module.exports = {
     renderIndex,
     renderAdd,
     addGame,
     renderUpdateForm,
     updateGame,
+    deleteGame,
 };
