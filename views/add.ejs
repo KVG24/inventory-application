@@ -23,6 +23,10 @@
                 <% }) %>
             </select>
 
+            <button class="add-dev-btn" onclick="modalToggle()" type="button">
+                Add developer
+            </button>
+
             <label>Genre:</label>
             <div class="genre-container">
                 <% genres.forEach(genre => { %>
@@ -40,5 +44,28 @@
             </div>
             <button class="submit" type="submit">Submit</button>
         </form>
+
+        <form
+            style="display: none"
+            class="add-dev-modal"
+            action="/add-dev"
+            method="post"
+        >
+            <input type="text" name="add_dev" placeholder="Developer name" />
+            <button type="submit" onclick="modalToggle()">Submit</button>
+        </form>
     </body>
+    <script defer>
+        const modal = document.querySelector(".add-dev-modal");
+        const mainForm = document.querySelector(".form");
+        function modalToggle() {
+            if (modal.style.display == "none") {
+                modal.style.display = "flex";
+                mainForm.style.opacity = "0.1";
+            } else {
+                modal.style.display = "none";
+                mainForm.style.opacity = "1";
+            }
+        }
+    </script>
 </html>

@@ -64,7 +64,7 @@ async function addGame(title, release_year, developer_id) {
 }
 
 async function addDeveloper(name) {
-    await pool.query("INSERT INTO developers (name) VALUES ($1)", [name]);
+    await pool.query(`INSERT INTO developers (name) VALUES ($1)`, [name]);
 }
 
 async function addGenre(name) {

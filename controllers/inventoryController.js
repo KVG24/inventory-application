@@ -77,6 +77,16 @@ async function deleteGame(req, res) {
     }
 }
 
+async function addDeveloper(req, res) {
+    try {
+        await db.addDeveloper(req.body.add_dev);
+        res.redirect("/add");
+    } catch (err) {
+        console.error("Error adding developer:", err);
+        res.status(500).send("Error adding developer");
+    }
+}
+
 module.exports = {
     renderIndex,
     renderAdd,
@@ -84,4 +94,5 @@ module.exports = {
     renderUpdateForm,
     updateGame,
     deleteGame,
+    addDeveloper,
 };
