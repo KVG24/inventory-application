@@ -3,10 +3,6 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
 }
 
 body {
@@ -35,10 +31,6 @@ h1 {
     width: max-content;
 }
 
-.update-btn {
-    color: white;
-}
-
 table {
     width: 100%;
     border-collapse: collapse;
@@ -47,7 +39,6 @@ table {
     background-color: #f9f9f9;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    overflow: hidden;
 }
 
 thead {
@@ -59,6 +50,10 @@ thead th {
     text-align: left;
     padding: 12px 15px;
     font-size: 1rem;
+}
+
+tbody {
+    background-color: #1e1e2f;
 }
 
 tbody td {
@@ -85,7 +80,7 @@ tbody tr:hover {
 .update-btn,
 .delete-btn {
     padding: 5px 10px;
-    margin-right: 5px;
+    margin: 10px;
     font-size: 0.9rem;
     border: none;
     border-radius: 5px;
@@ -266,9 +261,8 @@ h1 {
 
     tbody tr {
         margin-bottom: 15px;
-        border-bottom: 2px solid #ddd;
         padding: 10px;
-        background-color: #fff;
+        background-color: #464545;
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
         border-radius: 8px;
     }
