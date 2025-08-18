@@ -10,5 +10,6 @@ router.get("/:id/update", inventoryController.renderUpdateForm);
 router.post("/:id/update", inventoryController.updateGame);
 router.post("/:id/delete", inventoryController.deleteGame);
 router.post("/add-dev", inventoryController.addDeveloper);
+router.post("/add-genre", inventoryController.addGenre);
 
 module.exports = router;

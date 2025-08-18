@@ -23,9 +23,22 @@
                 <% }) %>
             </select>
 
-            <button class="add-dev-btn" onclick="modalToggle()" type="button">
-                Add developer
-            </button>
+            <div class="add-btns-container">
+                <button
+                    class="add-dev-btn"
+                    onclick="modalToggle(addDevModal)"
+                    type="button"
+                >
+                    Add developer
+                </button>
+                <button
+                    class="add-genre-btn"
+                    onclick="modalToggle(addGenreModal)"
+                    type="button"
+                >
+                    Add genre
+                </button>
+            </div>
 
             <label>Genre:</label>
             <div class="genre-container">
@@ -51,14 +64,30 @@
             action="/add-dev"
             method="post"
         >
+            <a class="back-link" href="/add">Back</a>
             <input type="text" name="add_dev" placeholder="Developer name" />
-            <button type="submit" onclick="modalToggle()">Submit</button>
+            <button type="submit" onclick="modalToggle(addDevModal)">
+                Submit
+            </button>
+        </form>
+        <form
+            style="display: none"
+            class="add-genre-modal"
+            action="/add-genre"
+            method="post"
+        >
+            <a class="back-link" href="/add">Back</a>
+            <input type="text" name="add_genre" placeholder="Genre name" />
+            <button type="submit" onclick="modalToggle(addGenreModal)">
+                Submit
+            </button>
         </form>
     </body>
     <script defer>
-        const modal = document.querySelector(".add-dev-modal");
+        const addDevModal = document.querySelector(".add-dev-modal");
+        const addGenreModal = document.querySelector(".add-genre-modal");
         const mainForm = document.querySelector(".form");
-        function modalToggle() {
+        function modalToggle(modal) {
             if (modal.style.display == "none") {
                 modal.style.display = "flex";
                 mainForm.style.opacity = "0.1";

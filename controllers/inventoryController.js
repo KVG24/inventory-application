@@ -87,6 +87,16 @@ async function addDeveloper(req, res) {
     }
 }
 
+async function addGenre(req, res) {
+    try {
+        await db.addGenre(req.body.add_genre);
+        res.redirect("/add");
+    } catch (err) {
+        console.error("Error adding genre:", err);
+        res.status(500).send("Error adding genre");
+    }
+}
+
 module.exports = {
     renderIndex,
     renderAdd,
@@ -95,4 +105,5 @@ module.exports = {
     updateGame,
     deleteGame,
     addDeveloper,
+    addGenre,
 };
