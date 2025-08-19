@@ -16,11 +16,6 @@ body {
     gap: 1rem;
 }
 
-h1 {
-    padding: 0;
-    margin: 0;
-}
-
 .add-btn {
     font-size: 2rem;
     padding: 1rem;
@@ -29,6 +24,37 @@ h1 {
     background-color: rgb(25, 49, 114);
     text-decoration: none;
     width: max-content;
+}
+
+.search-form {
+    display: flex;
+}
+
+.search-form input {
+    font-size: 1rem;
+    border-radius: 8px 0 0 8px;
+    padding: 0.5rem;
+    background-color: #3a3a50;
+    color: white;
+    width: 200px;
+    border: 1px solid rgb(88, 88, 88);
+}
+
+.search-submit-btn {
+    font-size: 1rem;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    background-color: #3a3a50;
+    border: 1px solid rgb(88, 88, 88);
+}
+
+.show-all-btn {
+    font-size: 1rem;
+    padding: 1rem;
+    background-color: #005c23;
+    text-decoration: none;
+    color: white;
+    border-radius: 10px;
 }
 
 table {
@@ -109,7 +135,8 @@ tbody tr:hover {
 }
 
 h1 {
-    margin-bottom: 1.5rem;
+    padding: 0;
+    margin: 0;
     color: #00d4ff;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }

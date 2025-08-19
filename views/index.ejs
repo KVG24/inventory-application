@@ -9,6 +9,18 @@
     <body>
         <h1>Gaming Store Inventory</h1>
         <a class="add-btn" href="/add">Add game</a>
+        <form class="search-form" action="/" method="get">
+            <input
+                type="text"
+                name="search"
+                value="<%= search %>"
+                placeholder="Search games..."
+            />
+            <button class="search-submit-btn" type="submit">🔍</button>
+        </form>
+        <% if (searching) { %>
+        <a class="show-all-btn" href="/">Show All</a>
+        <% } %>
         <table>
             <thead>
                 <tr>

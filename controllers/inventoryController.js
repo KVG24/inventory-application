@@ -2,7 +2,23 @@ const db = require("../db/queries");
 const pool = require("../db/pool");
 
 async function renderIndex(req, res) {
-    res.render("index", { games: await db.getCombinedInfo() });
+    const search = req.query.search || "";
+
+    if (search) {
+        // "return" here is important.
+        // Express will break if you send two requests at the same time after searching once
+        return res.render("index", {
+            games: await db.searchGames(search),
+            searching: true,
+            search: search,
+        });
+    }
+
+    res.render("index", {
+        games: await db.getCombinedInfo(),
+        searching: false,
+        search: search,
+    });
 }
 
 async function renderAdd(req, res) {
