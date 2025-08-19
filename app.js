@@ -2,9 +2,19 @@ const express = require("express");
 const app = express();
 const indexRouter = require("./routes/indexRouter");
 const path = require("node:path");
+const session = require("express-session");
 
 // Parse form data
 app.use(express.urlencoded({ extended: true }));
+
+// Express session for storing admin password
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET || "devsecret",
+        resave: false,
+        saveUninitialized: false,
+    })
+);
 
 app.use("/", indexRouter);
 

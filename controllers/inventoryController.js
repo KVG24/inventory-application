@@ -1,23 +1,27 @@
 const db = require("../db/queries");
 const pool = require("../db/pool");
+require("dotenv").config();
+
+async function loginAdmin(req, res) {
+    if (req.body.admin_password === process.env.ADMIN_PASSWORD) {
+        req.session.isAdmin = true;
+    } else {
+        req.session.isAdmin = false;
+    }
+    res.redirect("/");
+}
 
 async function renderIndex(req, res) {
     const search = req.query.search || "";
-
-    if (search) {
-        // "return" here is important.
-        // Express will break if you send two requests at the same time after searching once
-        return res.render("index", {
-            games: await db.searchGames(search),
-            searching: true,
-            search: search,
-        });
-    }
+    const games = search
+        ? await db.searchGames(search)
+        : await db.getCombinedInfo();
 
     res.render("index", {
-        games: await db.getCombinedInfo(),
-        searching: false,
-        search: search,
+        games,
+        searching: Boolean(search),
+        search,
+        admin: req.session.isAdmin || false,
     });
 }
 
@@ -114,6 +118,7 @@ async function addGenre(req, res) {
 }
 
 module.exports = {
+    loginAdmin,
     renderIndex,
     renderAdd,
     addGame,

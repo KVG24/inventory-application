@@ -7,8 +7,31 @@
         <title>Inventory Application</title>
     </head>
     <body>
+        <% if (!admin) { %>
+        <form class="admin" action="/admin" method="POST">
+            <input
+                type="password"
+                placeholder="Enter admin password"
+                name="admin_password"
+            />
+            <button class="log-in-btn" type="submit">Log In</button>
+        </form>
+        <% } %> <% if (admin) { %>
+        <form class="admin" action="/admin" method="POST">
+            <input
+                type="password"
+                placeholder="Enter admin password"
+                name="admin_password"
+                value=""
+                hidden
+            />
+            <button class="log-out-btn" type="submit">Log Out</button>
+        </form>
+        <% } %>
         <h1>Gaming Store Inventory</h1>
+        <% if (admin) { %>
         <a class="add-btn" href="/add">Add game</a>
+        <% } %>
         <form class="search-form" action="/" method="get">
             <input
                 type="text"
@@ -28,7 +51,9 @@
                     <th>Release Year</th>
                     <th>Developer</th>
                     <th>Genres</th>
+                    <% if (admin) { %>
                     <th></th>
+                    <% } %>
                 </tr>
             </thead>
             <tbody>
@@ -38,6 +63,7 @@
                     <td data-label="Release Year"><%= game.release_year %></td>
                     <td data-label="Developer"><%= game.developer %></td>
                     <td data-label="Genres"><%= game.genres %></td>
+                    <% if (admin) { %>
                     <td data-label="Actions">
                         <a class="update-btn" href="/<%= game.game_id %>/update"
                             >Update</a
@@ -56,6 +82,7 @@
                             </button>
                         </form>
                     </td>
+                    <% } %>
                 </tr>
                 <% }); %>
             </tbody>
