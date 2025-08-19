@@ -28,6 +28,9 @@ body {
 
 .search-form {
     display: flex;
+    position: absolute;
+    right: 20px;
+    top: 20px;
 }
 
 .search-form input {
@@ -309,5 +312,10 @@ h1 {
 
     .form {
         padding: 1.5rem;
+    }
+
+    .search-form {
+        display: flex;
+        position: static;
     }
 }
