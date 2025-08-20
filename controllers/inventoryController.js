@@ -5,8 +5,10 @@ require("dotenv").config();
 async function loginAdmin(req, res) {
     if (req.body.admin_password === process.env.ADMIN_PASSWORD) {
         req.session.isAdmin = true;
+        req.session.error = false;
     } else {
         req.session.isAdmin = false;
+        req.session.error = true;
     }
     res.redirect("/");
 }
@@ -17,11 +19,15 @@ async function renderIndex(req, res) {
         ? await db.searchGames(search)
         : await db.getCombinedInfo();
 
+    const error = req.session.error || false;
+    req.session.error = false;
+
     res.render("index", {
         games,
         searching: Boolean(search),
         search,
         admin: req.session.isAdmin || false,
+        error,
     });
 }
 

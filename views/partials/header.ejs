@@ -16,7 +16,9 @@
     />
     <button class="log-in-btn" type="submit">Log In</button>
 </form>
-<% } %> <% if (admin) { %>
+<% if (error) {%>
+<p class="log-in-error">Wrong password</p>
+<% } %> <% } %> <% if (admin) { %>
 <form class="admin" action="/admin" method="POST">
     <input
         type="password"
