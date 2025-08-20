@@ -35,6 +35,44 @@ async function getGame(gameId) {
     return rows[0];
 }
 
+async function getGamesByGenre(genre) {
+    const query = `
+        SELECT
+            g.title,
+            g.release_year,
+            d.name AS developer,
+            STRING_AGG(ge.name, ', ' ORDER BY ge.name) AS genres
+        FROM games g
+        JOIN developers d ON g.developer_id = d.developer_id
+        JOIN game_genres gg ON g.game_id = gg.game_id
+        JOIN genres ge ON gg.genre_id = ge.genre_id
+        WHERE ge.name ILIKE $1
+        GROUP BY g.game_id, g.title, g.release_year, d.name
+        ORDER BY g.release_year DESC
+    `;
+    const { rows } = await pool.query(query, [genre]);
+    return rows;
+}
+
+async function getGamesByDeveloper(developer) {
+    const query = `
+        SELECT
+            g.title,
+            g.release_year,
+            d.name AS developer,
+            STRING_AGG(ge.name, ', ' ORDER BY ge.name) AS genres
+        FROM games g
+        JOIN developers d ON g.developer_id = d.developer_id
+        JOIN game_genres gg ON g.game_id = gg.game_id
+        JOIN genres ge ON gg.genre_id = ge.genre_id
+        WHERE d.name ILIKE $1
+        GROUP BY g.game_id, g.title, g.release_year, d.name
+        ORDER BY g.release_year DESC
+    `;
+    const { rows } = await pool.query(query, [developer]);
+    return rows;
+}
+
 async function getCombinedInfo() {
     const { rows } = await pool.query(`
         SELECT
@@ -129,6 +167,8 @@ module.exports = {
     getGenres,
     getDevelopers,
     getGame,
+    getGamesByGenre,
+    getGamesByDeveloper,
     getCombinedInfo,
     addGame,
     addDeveloper,

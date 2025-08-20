@@ -15,15 +15,27 @@ async function loginAdmin(req, res) {
 
 async function renderIndex(req, res) {
     const search = req.query.search || "";
-    const games = search
-        ? await db.searchGames(search)
-        : await db.getCombinedInfo();
+    const genre = req.query.genre || "";
+    const developer = req.query.developer || "";
+    let games;
+
+    if (search) {
+        games = await db.searchGames(search);
+    } else if (genre) {
+        games = await db.getGamesByGenre(genre);
+    } else if (developer) {
+        games = await db.getGamesByDeveloper(developer);
+    } else {
+        games = await db.getCombinedInfo();
+    }
 
     const error = req.session.error || false;
     req.session.error = false;
 
     res.render("index", {
         games,
+        genres: await db.getGenres(),
+        developers: await db.getDevelopers(),
         searching: Boolean(search),
         search,
         admin: req.session.isAdmin || false,

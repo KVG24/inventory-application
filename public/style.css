@@ -90,6 +90,30 @@ body {
     border-radius: 10px;
 }
 
+.sort-by-genres-container,
+.sort-by-developers-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.genre-link,
+.developer-link {
+    padding: 1rem;
+    color: black;
+    background-color: #00d4ff;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.1s ease;
+}
+
+.genre-link:hover,
+.developer-link:hover,
+.all {
+    background-color: #bef4ff;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
