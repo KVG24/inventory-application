@@ -1,0 +1,34 @@
+<form class="search-form" action="/" method="get">
+    <input
+        type="text"
+        name="search"
+        value="<%= search %>"
+        placeholder="Search games..."
+    />
+    <button class="search-submit-btn" type="submit">🔍</button>
+</form>
+<% if (!admin) { %>
+<form class="admin" action="/admin" method="POST">
+    <input
+        type="password"
+        placeholder="Enter admin password"
+        name="admin_password"
+    />
+    <button class="log-in-btn" type="submit">Log In</button>
+</form>
+<% } %> <% if (admin) { %>
+<form class="admin" action="/admin" method="POST">
+    <input
+        type="password"
+        placeholder="Enter admin password"
+        name="admin_password"
+        value=""
+        hidden
+    />
+    <button class="log-out-btn" type="submit">Log Out</button>
+</form>
+<% if (admin) { %>
+<a class="add-btn" href="/add">Add game</a>
+<% } %> <% } %> <% if (searching) { %>
+<a class="show-all-btn" href="/">Show All</a>
+<% } %>

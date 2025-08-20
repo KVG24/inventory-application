@@ -1,0 +1,43 @@
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Release Year</th>
+            <th>Developer</th>
+            <th>Genres</th>
+            <% if (admin) { %>
+            <th></th>
+            <% } %>
+        </tr>
+    </thead>
+    <tbody>
+        <% games.forEach((game) => { %>
+        <tr>
+            <td data-label="Title"><%= game.title %></td>
+            <td data-label="Release Year"><%= game.release_year %></td>
+            <td data-label="Developer"><%= game.developer %></td>
+            <td data-label="Genres"><%= game.genres %></td>
+            <% if (admin) { %>
+            <td data-label="Actions">
+                <a class="update-btn" href="/<%= game.game_id %>/update"
+                    >Update</a
+                >
+                <form
+                    action="/<%= game.game_id %>/delete"
+                    method="POST"
+                    style="display: inline"
+                >
+                    <button
+                        class="delete-btn"
+                        type="submit"
+                        onclick="return confirm('Are you sure you want to delete <%= game.title %>');"
+                    >
+                        Delete
+                    </button>
+                </form>
+            </td>
+            <% } %>
+        </tr>
+        <% }); %>
+    </tbody>
+</table>
