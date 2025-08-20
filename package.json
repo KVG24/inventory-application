@@ -5,8 +5,8 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "server": "node --watch app.js",
-        "populatedb": "node db/populatedb.js"
+        "dev": "node --watch app.js",
+        "seed": "node db/populatedb.js"
     },
     "repository": {
         "type": "git",

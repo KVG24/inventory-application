@@ -7,6 +7,16 @@
         <title>Inventory Application</title>
     </head>
     <body>
+        <h1>Gaming Store Inventory</h1>
+        <form class="search-form" action="/" method="get">
+            <input
+                type="text"
+                name="search"
+                value="<%= search %>"
+                placeholder="Search games..."
+            />
+            <button class="search-submit-btn" type="submit">🔍</button>
+        </form>
         <% if (!admin) { %>
         <form class="admin" action="/admin" method="POST">
             <input
@@ -27,21 +37,9 @@
             />
             <button class="log-out-btn" type="submit">Log Out</button>
         </form>
-        <% } %>
-        <h1>Gaming Store Inventory</h1>
         <% if (admin) { %>
         <a class="add-btn" href="/add">Add game</a>
-        <% } %>
-        <form class="search-form" action="/" method="get">
-            <input
-                type="text"
-                name="search"
-                value="<%= search %>"
-                placeholder="Search games..."
-            />
-            <button class="search-submit-btn" type="submit">🔍</button>
-        </form>
-        <% if (searching) { %>
+        <% } %> <% } %> <% if (searching) { %>
         <a class="show-all-btn" href="/">Show All</a>
         <% } %>
         <table>

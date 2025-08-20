@@ -17,13 +17,16 @@ body {
 }
 
 .add-btn {
-    font-size: 2rem;
+    font-size: 1rem;
     padding: 1rem;
     border-radius: 10px;
     color: white;
     background-color: rgb(25, 49, 114);
     text-decoration: none;
     width: max-content;
+    position: absolute;
+    top: 20px;
+    left: 200px;
 }
 
 .search-form {
@@ -337,5 +340,18 @@ h1 {
     .search-form {
         display: flex;
         position: static;
+    }
+
+    .add-btn {
+        position: static;
+        padding: 0.5rem;
+    }
+
+    .admin {
+        position: static;
+    }
+
+    .log-out-btn {
+        padding: 0.5rem;
     }
 }
